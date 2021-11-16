@@ -20,7 +20,7 @@ class EmployerListItem extends React.Component{
         }))
     }
     render() {
-        let {name,salary} = this.props;
+        let {name,salary,onDelete} = this.props;
         let {increase, like} = this.state;
         let classNam = increase ? "list-group-item d-flex justify-content-between increase" :
         "list-group-item d-flex justify-content-between ";
@@ -39,7 +39,8 @@ class EmployerListItem extends React.Component{
                        <i className="fas fa-cookie"></i>
                    </button>
                    <button type="button"
-                       className="btn-trash btn-sm ">
+                        onClick={onDelete}
+                        className="btn-trash btn-sm ">
                        <i className="fas fa-trash"></i>
                    </button>
                        <i className=" fas fa-star"></i>

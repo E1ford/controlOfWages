@@ -37,6 +37,7 @@
 
 .list-group-item .btn-trash{
     color: #e5383b;
+    padding: 5px;
 }
 
 .list-group-item .fa-star{
