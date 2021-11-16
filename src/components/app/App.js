@@ -11,13 +11,12 @@ class App extends Component{
     super(props);
     this.state = {
       store : [
-        {name:"Smith.M", salary: 800, id:1},
-        {name:"Smith.M", salary: 1600, increase: false, id:2},
-        {name:"Yelor.K", salary: 300, increase: true, id:3},
-        {name:"Ptushko.O", salary: 600, increase: false, id:4},
-        {name:"Smith.L", salary: 15000, increase: false, id:5},
+        {name:"Smith.M", salary: 700, rise:true, increase: false, id:1},
+        {name:"Yelor.K", salary: 300, rise:false, increase: true, id:2},
+        {name:"Ptushko.O", salary: 600, rise:false, increase: false, id:3},
+        {name:"Smith.L", salary: 15000, rise:false, increase: false, id:4},
       ],
-      newKey: 6
+      newKey: 5,
     } 
   }
   onDeleteEmployee =(id)=>{
@@ -33,16 +32,40 @@ class App extends Component{
       return {store: [...state.store, newObj],newKey: state.newKey + 1}
     })
   }
+  onToggleIncrease=(id)=>{
+    this.setState(({store})=>({
+      store : store.map(item => {
+        if(item.id === id ){
+          return {...item, increase: !item.increase}
+        }
+        return item 
+      })
+    }))
+  }
+  onToggleRise=(id)=>{
+    this.setState(({store})=>({
+      store : store.map(item => {
+        if(item.id === id ){
+          return {...item, rise: !item.rise}
+        }
+        return item 
+      })
+    }))
+  }
 
   render(){
     return (
       <div className="app">
-        <AppInfo/>
+        <AppInfo store={this.state.store}/>
         <div className="search-panel">
           <SearchPanel/>
           <AppFilter/>
         </div>
-        <EmployerList onDeleteEmployee={this.onDeleteEmployee} store={this.state.store}/>
+        <EmployerList onDeleteEmployee={this.onDeleteEmployee}
+          onToggleIncrease={this.onToggleIncrease} 
+          store={this.state.store}
+          onToggleRise={this.onToggleRise}
+        />
         <EmployersAddForm onAddEmployee={this.onAddEmployee}/>
       </div>
     );
