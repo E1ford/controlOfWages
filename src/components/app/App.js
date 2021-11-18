@@ -17,7 +17,8 @@ class App extends Component{
         {name:"Smith.L", salary: 15000, rise:false, increase: false, id:4},
       ],
       newKey: 5,
-      term:''
+      term:'',
+      filter: 'all'
     } 
   }
   // удаление сотрудника 
@@ -68,21 +69,40 @@ class App extends Component{
   onUpdateSearch =(term)=>{
     this.setState({term})
   }
+  onFilterSelect=(filter)=>{
+    this.setState({filter})
+
+  }
+  filterPost =(items,filter)=>{
+    switch(filter){
+      case 'rise': 
+              return items.filter(item =>item.rise)
+      case 'more':
+              return items.filter(item =>item.salary >=1000)
+      case 'all':
+              return items
+      default:
+              return items
+    }
+  }
   
 
   render(){
-    const {store, term} = this.state
+    const {store, term, filter} = this.state
     // количество рабочих и рабочих получающих премию
     const  countEmployee = store.length;
     const  countEmployeeInIncrease= store.filter(el => el.increase ).length
     // готовые данные для отображения, отфильтрованные
-    const visibleData = this.searchEmp(store, term);
+    const visibleData = this.filterPost(this.searchEmp(store, term), filter)
+
+
+
     return (
       <div className="app">
         <AppInfo countEmployeeInIncrease={countEmployeeInIncrease} countEmployee={countEmployee}/>
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
-          <AppFilter/>
+          <AppFilter onFilterSelect={this.onFilterSelect} filter={filter}/>
         </div>
         <EmployerList onDeleteEmployee={this.onDeleteEmployee}
           onToggleIncrease={this.onToggleIncrease} 
