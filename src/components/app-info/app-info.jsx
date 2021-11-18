@@ -1,9 +1,7 @@
 import React from "react"
 import './app-info.css'
-const AppInfo =({store})=>{
+const AppInfo =({countEmployee,countEmployeeInIncrease})=>{
 
-    let countEmployee = store.length;
-    let countEmployeeInIncrease= store.filter(el => el.increase ).length
     return(
         <div className="app-info">
             <h1>учет сотрудников в компании Name</h1>

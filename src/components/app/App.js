@@ -17,14 +17,17 @@ class App extends Component{
         {name:"Smith.L", salary: 15000, rise:false, increase: false, id:4},
       ],
       newKey: 5,
+      term:''
     } 
   }
+  // удаление сотрудника 
   onDeleteEmployee =(id)=>{
     this.setState(({store})=>{
       let newState =  store.filter(el=>el.id!== id);
       return {store: newState}
     })
   }
+  // добавление нового сотрудника
   onAddEmployee=(name,salary)=>{
     this.setState(state=>{
       let newObj = {name:name, salary:salary, increase:false, id:state.newKey}
@@ -32,6 +35,7 @@ class App extends Component{
       return {store: [...state.store, newObj],newKey: state.newKey + 1}
     })
   }
+  // кнопка со звездочкой
   onToggleIncrease=(id)=>{
     this.setState(({store})=>({
       store : store.map(item => {
@@ -42,6 +46,7 @@ class App extends Component{
       })
     }))
   }
+  // кнопка с печенькой
   onToggleRise=(id)=>{
     this.setState(({store})=>({
       store : store.map(item => {
@@ -52,18 +57,36 @@ class App extends Component{
       })
     }))
   }
+  // поиск среди работников, ищет точное совпадение в имени
+  searchEmp = (items, term )=>{
+    if(term.length === 0 ){
+      return items
+    }
+    return items.filter(item => {
+      return item.name.indexOf(term) > -1})
+  }
+  onUpdateSearch =(term)=>{
+    this.setState({term})
+  }
+  
 
   render(){
+    const {store, term} = this.state
+    // количество рабочих и рабочих получающих премию
+    const  countEmployee = store.length;
+    const  countEmployeeInIncrease= store.filter(el => el.increase ).length
+    // готовые данные для отображения, отфильтрованные
+    const visibleData = this.searchEmp(store, term);
     return (
       <div className="app">
-        <AppInfo store={this.state.store}/>
+        <AppInfo countEmployeeInIncrease={countEmployeeInIncrease} countEmployee={countEmployee}/>
         <div className="search-panel">
-          <SearchPanel/>
+          <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
           <AppFilter/>
         </div>
         <EmployerList onDeleteEmployee={this.onDeleteEmployee}
           onToggleIncrease={this.onToggleIncrease} 
-          store={this.state.store}
+          store={visibleData}
           onToggleRise={this.onToggleRise}
         />
         <EmployersAddForm onAddEmployee={this.onAddEmployee}/>
