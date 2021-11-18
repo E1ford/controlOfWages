@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { useBeforeunload } from 'react-beforeunload';
 import AppInfo from '../app-info/app-info';
 import './App.css';
 import SearchPanel from './../search-panel/search-panel';
@@ -20,6 +21,34 @@ class App extends Component{
       term:'',
       filter: 'all'
     } 
+    // this.componentDidMount(
+    //   inicialState = localStorage.
+    //   this.setState(state=>{
+    //     return 
+    //   })
+    // )
+    
+  }
+  componentDidMount(){
+    let Prevstore = JSON.parse(localStorage.getItem("data"))
+    this.setState({store: Prevstore})
+  }
+  componentDidUpdate() {
+    let store = this.state.store
+    localStorage.clear();
+    localStorage.setItem("data", JSON.stringify(store) )
+  }
+  
+  
+  onChangeValueSalary=(id, newSalary)=>{
+    this.setState(({store})=>({
+      store : store.map(item => {
+        if(item.id === id ){
+          return {...item, salary: newSalary}
+        }
+        return item 
+      })
+    }))
   }
   // удаление сотрудника 
   onDeleteEmployee =(id)=>{
@@ -88,6 +117,7 @@ class App extends Component{
   
 
   render(){
+    
     const {store, term, filter} = this.state
     // количество рабочих и рабочих получающих премию
     const  countEmployee = store.length;
@@ -104,7 +134,9 @@ class App extends Component{
           <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
           <AppFilter onFilterSelect={this.onFilterSelect} filter={filter}/>
         </div>
-        <EmployerList onDeleteEmployee={this.onDeleteEmployee}
+        <EmployerList
+          onChangeValueSalary={this.onChangeValueSalary}
+          onDeleteEmployee={this.onDeleteEmployee}
           onToggleIncrease={this.onToggleIncrease} 
           store={visibleData}
           onToggleRise={this.onToggleRise}

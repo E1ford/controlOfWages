@@ -3,15 +3,15 @@ import './employers-list.css'
 
 
 
-const EmployerList =({store,onDeleteEmployee,onToggleIncrease,onToggleRise})=>{
+const EmployerList =({store,onDeleteEmployee,onToggleIncrease,onToggleRise,onChangeValueSalary})=>{
 
      let employerList = store.map(item => {
-        const {id, ...itemProps} = item;
         return (<EmployerListItem 
-            onToggleRise={()=>{onToggleRise(id)}} 
-            onToggleIncrease={()=>{onToggleIncrease(id)}} 
-            onDelete={()=>{onDeleteEmployee(id)}} 
-            key={id} {...itemProps}/>)
+            onChangeValueSalary={onChangeValueSalary}
+            onToggleRise={()=>{onToggleRise(item.id)}} 
+            onToggleIncrease={()=>{onToggleIncrease(item.id)}} 
+            onDelete={()=>{onDeleteEmployee(item.id)}} 
+            key={item.id} {...item}/>)
     });
 
 
