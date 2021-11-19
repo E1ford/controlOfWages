@@ -29,15 +29,17 @@ class App extends Component{
     // )
     
   }
-  componentDidMount(){
-    let Prevstore = JSON.parse(localStorage.getItem("data"))
-    this.setState({store: Prevstore})
-  }
-  componentDidUpdate() {
-    let store = this.state.store
-    localStorage.clear();
-    localStorage.setItem("data", JSON.stringify(store) )
-  }
+
+// не работает на gitHubPages
+  // componentDidMount(){
+  //   let Prevstore = JSON.parse(localStorage.getItem("data"))
+  //   this.setState({store: Prevstore})
+  // }
+  // componentDidUpdate() {
+  //   let store = this.state.store
+  //   localStorage.clear();
+  //   localStorage.setItem("data", JSON.stringify(store) )
+  // }
   
   
   onChangeValueSalary=(id, newSalary)=>{
