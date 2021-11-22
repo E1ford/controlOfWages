@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/controlOfWages/static/css/main.df86a454.chunk.css",
+    "main.js": "/controlOfWages/static/js/main.5eb46a0d.chunk.js",
+    "main.js.map": "/controlOfWages/static/js/main.5eb46a0d.chunk.js.map",
+    "runtime-main.js": "/controlOfWages/static/js/runtime-main.f2e80887.js",
+    "runtime-main.js.map": "/controlOfWages/static/js/runtime-main.f2e80887.js.map",
+    "static/js/2.9cfaee0f.chunk.js": "/controlOfWages/static/js/2.9cfaee0f.chunk.js",
+    "static/js/2.9cfaee0f.chunk.js.map": "/controlOfWages/static/js/2.9cfaee0f.chunk.js.map",
+    "index.html": "/controlOfWages/index.html",
+    "static/css/main.df86a454.chunk.css.map": "/controlOfWages/static/css/main.df86a454.chunk.css.map",
+    "static/js/2.9cfaee0f.chunk.js.LICENSE.txt": "/controlOfWages/static/js/2.9cfaee0f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f2e80887.js",
+    "static/js/2.9cfaee0f.chunk.js",
+    "static/css/main.df86a454.chunk.css",
+    "static/js/main.5eb46a0d.chunk.js"
+  ]
+}
