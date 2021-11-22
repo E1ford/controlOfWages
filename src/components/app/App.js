@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { useBeforeunload } from 'react-beforeunload';
 import AppInfo from '../app-info/app-info';
 import './App.css';
 import SearchPanel from './../search-panel/search-panel';
@@ -21,15 +20,9 @@ class App extends Component{
       term:'',
       filter: 'all'
     } 
-    // this.componentDidMount(
-    //   inicialState = localStorage.
-    //   this.setState(state=>{
-    //     return 
-    //   })
-    // )
-    
   }
-  // не работает на gh-pages
+
+// не работает на gitHubPages
   // componentDidMount(){
   //   let Prevstore = JSON.parse(localStorage.getItem("data"))
   //   this.setState({store: Prevstore})
