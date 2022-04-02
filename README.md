@@ -1,4 +1,5 @@
-# демо (https://e1ford.github.io/controlOfWages/)
+## демо [ссылка](https://e1ford.github.io/controlOfWages/)
+
 
 В процессе разработки поработал с 
 - хуками жизненного цикла 
